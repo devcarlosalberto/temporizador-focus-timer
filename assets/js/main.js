@@ -1,6 +1,7 @@
-import Sounds from "./sounds.js"
-import Timer from "./timer.js"
-import backgroundSoundControls from "./backgroundSoundControls.js"
+import Sounds from "./sounds.js";
+import Timer from "./timer.js";
+import BackgroundSoundControls from "./backgroundSoundControls.js";
+import DarkMode from "./darkMode.js";
 import {
     displayMinutes,
     displaySeconds,
@@ -11,10 +12,14 @@ import {
     soundButtonForest,
     soundButtonRain,
     soundButtonCafeteria,
-    soundButtonFireplace
+    soundButtonFireplace,
+    sliderVolumeForest,
+    sliderVolumeRain,
+    sliderVolumeCafeteria,
+    sliderVolumeFireplace,
 } from "./elements.js"
 
-const sounds = Sounds()
+const sounds = Sounds();
 
 Timer({
     sounds,
@@ -24,13 +29,16 @@ Timer({
     stopButton,
     plusButton,
     lessButton
-})
+});
 
-backgroundSoundControls({
+BackgroundSoundControls({
     sounds,
     soundButtonForest,
     soundButtonRain,
     soundButtonCafeteria,
-    soundButtonFireplace
-})
-
+    soundButtonFireplace,
+    sliderVolumeForest,
+    sliderVolumeRain,
+    sliderVolumeCafeteria,
+    sliderVolumeFireplace
+});

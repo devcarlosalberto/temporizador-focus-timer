@@ -21,6 +21,7 @@ export default function Timer({
         minutes = 25
         seconds = 0
         updateDisplay()
+        sounds.timerStopped.play()
     }
 
     function addFiveMinutes() {
@@ -29,7 +30,7 @@ export default function Timer({
     }
 
     function removeFiveMinutes() {
-        if ((minutes - 5) >= 0) {
+        if ((minutes - 5) > 0) {
             minutes -= 5
             updateDisplay()
         }
@@ -45,6 +46,12 @@ export default function Timer({
             }
 
             updateDisplay()
+
+            if (minutes == 0 && seconds == 0) {
+                stop()
+                return
+            }
+    
             countDown()
         }, 1000)
     }

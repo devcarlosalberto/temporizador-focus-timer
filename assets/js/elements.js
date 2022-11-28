@@ -8,6 +8,10 @@ const soundButtonForest = document.querySelector("#forest")
 const soundButtonRain = document.querySelector("#rain")
 const soundButtonCafeteria = document.querySelector("#cafeteria")
 const soundButtonFireplace = document.querySelector("#fireplace")
+const sliderVolumeForest = document.querySelector("#vol-forest")
+const sliderVolumeRain = document.querySelector("#vol-rain")
+const sliderVolumeCafeteria = document.querySelector("#vol-cafeteria")
+const sliderVolumeFireplace = document.querySelector("#vol-fireplace")
 
 export {
     displayMinutes,
@@ -19,5 +23,11 @@ export {
     soundButtonForest,
     soundButtonRain,
     soundButtonCafeteria,
-    soundButtonFireplace
+    soundButtonFireplace,
+    sliderVolumeForest,
+    sliderVolumeRain,
+    sliderVolumeCafeteria,
+    sliderVolumeFireplace,
+    buttonSwitchTheme,
+    iconButtonSwitchTheme
 }

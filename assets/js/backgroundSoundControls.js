@@ -1,44 +1,78 @@
-let lastCardActived
+let currentButtonActived;
 
-export default function({
+export default function BackgroundSoundControls({
     sounds,
     soundButtonForest,
     soundButtonRain,
     soundButtonCafeteria,
-    soundButtonFireplace
+    soundButtonFireplace,
+    sliderVolumeForest,
+    sliderVolumeRain,
+    sliderVolumeCafeteria,
+    sliderVolumeFireplace
 }) {
-    function resetBackgroundOfAllCards() {
-        let cards = [soundButtonForest.parentElement, soundButtonRain.parentElement,
-                    soundButtonCafeteria.parentElement, soundButtonFireplace.parentElement]
-        for (let card of cards) {
-            card.classList.remove("card-sound-active")
-        }
-    }
-
-    function toggleCardStyle(childCardButtonOfCard) {
-
-        let currentCard = childCardButtonOfCard.parentElement
-        let buttonIconSvg = document.querySelector(`#${childCardButtonOfCard.id} > svg > path`)
-
-        if (lastCardActived == currentCard) {
-            currentCard.classList.remove("card-sound-active")
+    function toggleSyleButton(buttonClicked) {
+        let buttonIconSvg = document.querySelector(`#${buttonClicked.id} > svg > path`)
+        
+        if (currentButtonActived == buttonClicked) {
+            buttonClicked.parentElement.classList.remove("card-sound-active")
             buttonIconSvg.setAttribute("fill", "#323238")
-            lastCardActived = undefined
-        } else if (lastCardActived != currentCard) {
-            if (lastCardActived) { lastCardActived.classList.remove("card-sound-active") }
-            currentCard.classList.add("card-sound-active")
+            currentButtonActived = undefined
+        } else if (currentButtonActived != buttonClicked) {
+            if (currentButtonActived) {
+                let currentCardActived = currentButtonActived.parentElement
+                let currentButtonIconSvgActived = document.querySelector(`#${currentButtonActived.id} > svg > path`)
+                currentCardActived.classList.remove("card-sound-active")
+                currentButtonIconSvgActived.setAttribute("fill", "#323238")
+                console.log(currentButtonActived)
+            }
+            buttonClicked.parentElement.classList.add("card-sound-active")
             buttonIconSvg.setAttribute("fill", "white")
-            lastCardActived = currentCard
+            currentButtonActived = buttonClicked
         }
     }
 
-    function setBackgroundSound(childCardButtonOfCard, sound) {
-        toggleCardStyle(childCardButtonOfCard)
+    function setBackgroundSound(buttonClicked, sound) {
+        toggleSyleButton(buttonClicked)
         sound.toggle()
     }
 
-    soundButtonForest.addEventListener("click", () => { setBackgroundSound(soundButtonForest, sounds.backgroundForestSound) })
-    soundButtonRain.addEventListener("click", () => { setBackgroundSound(soundButtonRain, sounds.backgroundRainSound) })
-    soundButtonCafeteria.addEventListener("click", () => { setBackgroundSound(soundButtonCafeteria, sounds.backgroundCafeteriaSound) })
-    soundButtonFireplace.addEventListener("click", () => { setBackgroundSound(soundButtonFireplace, sounds.backgroundFireplaceSound) })
+    soundButtonForest.addEventListener("click", () => { 
+        setBackgroundSound(soundButtonForest, sounds.backgroundForestSound)
+    })
+
+    sliderVolumeForest.addEventListener("input", () => {
+        let volume = sliderVolumeForest.value / 100
+        sounds.backgroundForestSound.setVolume(volume)
+    })
+
+
+    soundButtonRain.addEventListener("click", () => { 
+        setBackgroundSound(soundButtonRain, sounds.backgroundRainSound)
+    })
+
+    sliderVolumeRain.addEventListener("input", () => {
+        let volume = sliderVolumeRain.value / 100
+        sounds.backgroundRainSound.setVolume(volume)
+    })
+
+
+    soundButtonCafeteria.addEventListener("click", () => { 
+        setBackgroundSound(soundButtonCafeteria, sounds.backgroundCafeteriaSound) 
+    })
+
+    sliderVolumeCafeteria.addEventListener("input", () => {
+        let volume = sliderVolumeCafeteria.value / 100
+        sounds.backgroundCafeteriaSound.setVolume(volume)
+    })
+
+
+    soundButtonFireplace.addEventListener("click", () => { 
+        setBackgroundSound(soundButtonFireplace, sounds.backgroundFireplaceSound)
+    })
+
+    sliderVolumeFireplace.addEventListener("input", () => {
+        let volume = sliderVolumeFireplace.value / 100
+        sounds.backgroundFireplaceSound.setVolume(volume)
+    })
 }

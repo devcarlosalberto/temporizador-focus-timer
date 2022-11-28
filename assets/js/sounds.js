@@ -44,6 +44,9 @@ export default function Sounds() {
             } else {
                 this.play()
             }
+        },
+        setVolume(vol) {
+            forestAudio.volume = vol
         }
     }
 
@@ -64,6 +67,9 @@ export default function Sounds() {
             } else {
                 this.play()
             }
+        },
+        setVolume(vol) {
+            rainAudio.volume = vol
         }
     }
 
@@ -84,6 +90,9 @@ export default function Sounds() {
             } else {
                 this.play()
             }
+        },
+        setVolume(vol) {
+            cafeteriaAudio.volume = vol
         }
     }
 
@@ -104,6 +113,9 @@ export default function Sounds() {
             } else {
                 this.play()
             }
+        },
+        setVolume(vol) {
+            fireplaceAudio.volume = vol
         }
     }
 
